@@ -23,7 +23,7 @@ pip install -r requirements.txt
 + Baixar o áudio: O script baixa o áudio do vídeo do YouTube fornecido.
 + Converter o áudio: Converte o áudio baixado para o formato .wav com taxa de amostragem de 16kHz.
 + Transcrever o áudio: Utiliza o Whiper para transcrever o conteúdo do áudio.
-+ Gerar um resumo: Resuma o texto transcrito utilizando o modelo BART.
++ Gerar um resumo: Resume o texto transcrito utilizando o modelo BART.
 
 Execução
 Execute o script com o seguinte comando:
