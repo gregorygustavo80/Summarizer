@@ -25,7 +25,7 @@ pip install -r requirements.txt
 + Transcrever o áudio: Utiliza o Whiper para transcrever o conteúdo do áudio.
 + Gerar um resumo: Resume o texto transcrito utilizando o modelo BART.
 
-Execução
+## Execução
 Execute o script com o seguinte comando:
 
 ````bash
