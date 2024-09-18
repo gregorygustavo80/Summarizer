@@ -21,7 +21,7 @@ def converter_audio(progress_bar):
     try:
         input_audio = 'input_audio.mp3'
         output_audio = 'output_audio.wav'
-        ffmpeg.input(input_audio).output(output_audio).run()
+        ffmpeg.input(input_audio).output(output_audio, ar=16000).run()
         progress_bar.progress(66)  
         st.success("Áudio convertido com sucesso!")
     except Exception as e:
