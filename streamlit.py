@@ -2,10 +2,20 @@ import streamlit as st
 from pytubefix import YouTube
 import ffmpeg
 from transformers import pipeline, BartTokenizer, BartForConditionalGeneration
+import os 
 
 st.title("Resuma vídeos do YouTube")
 
 video_url = st.text_input("Cole o link do YouTube aqui:")
+
+def limpar():
+    file_paths = ["input_audio.mp3", "output_audio.wav"]
+    for file_path in file_paths:
+        if os.path.exists(file_path):
+            os.remove(file_path)
+            print(f"{file_path} foi removido.")
+        else:
+            print(f"{file_path} não existe.")
 
 def baixar_audio(video_url, progress_bar):
     try:
@@ -59,10 +69,9 @@ def resumir(texto, progress_bar):
 # Botões para iniciar cada processo
 if st.button("Resumir vídeo"):
     if video_url:
-        # Subtítulo para a etapa de processamento
+        limpar()
+       
         st.subheader("Processando...")
-
-        # Criando a barra de progresso
         progress_bar = st.progress(0)
 
         baixar_audio(video_url, progress_bar)
