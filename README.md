@@ -34,4 +34,4 @@ python summarizer.py
 ## Interface Grágica com Streamlit
 
 ````bash
-streamlit run summarizer.py
+streamlit run streamlit.py
