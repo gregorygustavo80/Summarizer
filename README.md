@@ -31,3 +31,7 @@ Execute o script com o seguinte comando:
 ````bash
 python summarizer.py
 ```` 
+## Interface Grágica com Streamlit
+
+````bash
+streamlit run summarizer.py
