@@ -71,7 +71,7 @@ if st.button("Resumir vídeo"):
 
         if texto:
             # Subtítulo para o resumo
-            st.subheader("Resumo do Áudio")
+            st.subheader("Resumo do vídeo")
             resumo = resumir(texto, progress_bar)
             st.write(resumo)
         else:
