@@ -1,8 +1,18 @@
 from pytubefix import YouTube
 import ffmpeg
 from transformers import pipeline, BartTokenizer, BartForConditionalGeneration
+import os
 
 video_url = input('Cole o link do YouTube aqui: ')
+
+def limpar():
+    file_paths = ["input_audio.mp3", "output_audio.wav"]
+    for file_path in file_paths:
+        if os.path.exists(file_path):
+            os.remove(file_path)
+            print(f"{file_path} foi removido.")
+        else:
+            print(f"{file_path} não existe.")
 
 def baixar_audio():
     try:
@@ -49,6 +59,7 @@ def resumir(texto):
         return ""
 
 def main():
+    limpar()
     baixar_audio()
     converter_audio()
     texto = transcrever_audio()
