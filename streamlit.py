@@ -39,7 +39,7 @@ def converter_audio(progress_bar):
 
 def transcrever_audio(progress_bar):
     try:
-        asr_model = pipeline("automatic-speech-recognition", model="openai/whisper-tiny")
+        asr_model = pipeline("automatic-speech-recognition", model="openai/whisper-large")
         transcription = asr_model('output_audio.wav')
         texto = transcription['text']
         progress_bar.progress(90)  
@@ -51,12 +51,12 @@ def transcrever_audio(progress_bar):
 
 def resumir(texto, progress_bar):
     try:
-        model_name = "facebook/bart-base"
+        model_name = "facebook/bart-large-xsum"
         tokenizer = BartTokenizer.from_pretrained(model_name)
         model = BartForConditionalGeneration.from_pretrained(model_name)
 
         inputs = tokenizer(texto, return_tensors="pt", max_length=1024, truncation=True)
-        summary_ids = model.generate(inputs["input_ids"], max_length=800, min_length=400, length_penalty=2.0, num_beams=4, early_stopping=True)
+        summary_ids = model.generate(inputs["input_ids"], max_length=800, min_length=400, length_penalty=2.0, num_beams=8, early_stopping=True)
         summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True, clean_up_tokenization_spaces=False)
         
         progress_bar.progress(100) 
