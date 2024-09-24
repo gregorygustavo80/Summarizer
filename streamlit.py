@@ -39,7 +39,7 @@ def converter_audio(progress_bar):
 
 def transcrever_audio(progress_bar):
     try:
-        asr_model = pipeline("automatic-speech-recognition", model="openai/whisper-large")
+        asr_model = pipeline("automatic-speech-recognition", model="openai/whisper-tiny")
         transcription = asr_model('output_audio.wav')
         texto = transcription['text']
         progress_bar.progress(90)  
@@ -51,7 +51,7 @@ def transcrever_audio(progress_bar):
 
 def resumir(texto, progress_bar):
     try:
-        model_name = "facebook/bart-large-xsum"
+        model_name = "facebook/bart-base"
         tokenizer = BartTokenizer.from_pretrained(model_name)
         model = BartForConditionalGeneration.from_pretrained(model_name)
 
@@ -66,7 +66,6 @@ def resumir(texto, progress_bar):
         st.error(f"Erro ao gerar o resumo: {e}")
         return ""
 
-# Botões para iniciar cada processo
 if st.button("Resumir vídeo"):
     if video_url:
         limpar()
@@ -79,7 +78,6 @@ if st.button("Resumir vídeo"):
         texto = transcrever_audio(progress_bar)
 
         if texto:
-            # Subtítulo para o resumo
             st.subheader("Resumo do vídeo")
             resumo = resumir(texto, progress_bar)
             st.write(resumo)
